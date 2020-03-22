@@ -25,18 +25,11 @@ namespace Sample.Blog.BlazorServer
 
         public IConfiguration Configuration { get; }
 
-        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
-
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddCors(options =>
-            {
-                options.AddPolicy(
-                    MyAllowSpecificOrigins,
-                    builder => { builder.WithOrigins("https://cloud.squidex.io"); });
-            });
+            services.AddCors();
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddSingleton<WeatherForecastService>();
@@ -65,12 +58,7 @@ namespace Sample.Blog.BlazorServer
 
             app.UseRouting();
 
-            //app.UseCors(MyAllowSpecificOrigins);
-
-            app.UseCors(policy => policy.WithOrigins("https://cloud.squidex.io")
-                .AllowAnyMethod()
-                //.WithHeaders(HeaderNames.ContentType, HeaderNames.Authorization, "x-custom-header")
-                .AllowCredentials());
+            app.UseCors(policy => policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
 
             app.UseEndpoints(endpoints =>
             {
