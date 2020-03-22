@@ -1,0 +1,33 @@
+﻿@page "/blog"
+@inject Sample.Blog.Models.IApiClient ApiClient
+
+<h1>@Title - Squidex Blog Sample Heading</h1>
+
+<title>@Title - Squidex Blog Sample Title</title>
+
+@foreach (var post in BlogPosts)
+{
+    <li class="nav-item">
+        <a class="nav-link">@post.Data.Title</a>
+    </li>
+}
+
+@foreach (var post in BlogPosts)
+{
+    <Post BlogPost="@post"></Post>
+}
+
+@code {
+
+    [Parameter]
+    public string Title { get; set; } = "DemoBlog";
+
+    public long Total { get; set; }
+
+    public IList<BlogPost> BlogPosts { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        (Total, BlogPosts) = await ApiClient.GetBlogPostsAsync();
+    }
+}

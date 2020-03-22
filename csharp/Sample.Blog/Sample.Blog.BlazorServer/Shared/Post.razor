@@ -1,0 +1,10 @@
+﻿<div>
+    <h2>@BlogPost.Data.Title</h2>
+
+    @BlogPost.Data.Text
+</div>
+
+@code{
+    [Parameter]
+    public BlogPost BlogPost { get; set; }
+}
