@@ -69,7 +69,7 @@ namespace Sample.Blog.Models
         public Task<ContentsResult<BlogPost, BlogPostData>> GetBlogPostAsync(string id)
         {
             var query = new ODataQuery { Ids=new HashSet<string> { id } };
-            return postsClient.GetAsync();
+            return postsClient.GetAsync(query);
         }
     }
 }
