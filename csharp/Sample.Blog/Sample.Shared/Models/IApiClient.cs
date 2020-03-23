@@ -5,6 +5,7 @@
 //  All rights reserved. Licensed under the MIT license.
 // ==========================================================================
 
+using Squidex.ClientLibrary;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -16,7 +17,7 @@ namespace Sample.Blog.Models
 
         Task<List<Page>> GetPagesAsync();
 
-        Task<BlogPost> GetBlogPostAsync(string id);
+        Task<ContentsResult<BlogPost, BlogPostData>> GetBlogPostAsync(string id);
 
         Task<Page> GetPageAsync(string slug);
     }

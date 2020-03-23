@@ -6,6 +6,7 @@
 // ==========================================================================
 
 using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Sample.Blog.Models;
@@ -45,7 +46,7 @@ namespace Sample.Blog.Controllers
 
             var vm = new PostVM
             {
-                Post = post
+                Post = post.Items.First()
             };
 
             return View(vm);
