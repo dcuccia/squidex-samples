@@ -1,7 +1,9 @@
 ﻿<div>
     <h2>@BlogPost.Data.Title</h2>
 
-    @BlogPost.Data.Text
+    <div class="content px-4">
+        @((MarkupString)BlogPost.Data.Text)
+    </div>
 </div>
 
 @code{

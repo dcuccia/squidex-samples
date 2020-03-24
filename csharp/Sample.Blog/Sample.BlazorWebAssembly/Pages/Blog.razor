@@ -5,16 +5,23 @@
 
 <title>@Title - Squidex Blog Sample Title</title>
 
-@foreach (var post in BlogPosts)
+@if (BlogPosts == null)
 {
-    <li class="nav-item">
-        <a class="nav-link">@post.Data.Title</a>
-    </li>
+    <div>Loading...</div>
 }
-
-@foreach (var post in BlogPosts)
+else
 {
-    <Post BlogPost="@post"></Post>
+    @foreach (var post in BlogPosts)
+    {
+        <li class="nav-item">
+            <a class="nav-link">@post.Data.Title</a>
+        </li>
+    }
+
+    @foreach (var post in BlogPosts)
+    {
+        <Post BlogPost="@post"></Post>
+    }
 }
 
 @code {
@@ -30,4 +37,4 @@
     {
         (Total, BlogPosts) = await ApiClient.GetBlogPostsAsync();
     }
-}
+    }
